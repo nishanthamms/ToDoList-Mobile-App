@@ -19,6 +19,6 @@ public class EditToDo extends AppCompatActivity {
         title = findViewById(R.id.editToDoTextTitle);
         des = findViewById(R.id.editToDoTextDescription);
         edit = findViewById(R.id.buttonEdit);
-        
+
     }
 }
