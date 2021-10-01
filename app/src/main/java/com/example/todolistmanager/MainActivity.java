@@ -1,11 +1,14 @@
 package com.example.todolistmanager;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,5 +50,40 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(context,AddToDo.class));
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                final ToDo todo = toDos.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(todo.getTitle());
+                builder.setMessage(todo.getDescription());
+                builder.setPositiveButton("Finished", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       todo.setFinished(System.currentTimeMillis());
+                        dbHandler.updateSingleToDo(todo);
+                        startActivity(new Intent(context,MainActivity.class));
+                    }
+                });
+                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHandler.deleteToDo(todo.getId());
+                        startActivity(new Intent(context,MainActivity.class));
+                    }
+                });
+                builder.setNeutralButton("Update", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(context,EditToDo.class);
+                        intent.putExtra("id",String.valueOf(todo.getId()));
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+            }
+        });
+
     }
 }
