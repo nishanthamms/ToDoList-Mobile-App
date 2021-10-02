@@ -7,7 +7,7 @@ Included Functions
 - Delete ToDo
 
 Used Tools
-- ndroid Studio
+- Android Studio
 
 Used Language
 - Java
