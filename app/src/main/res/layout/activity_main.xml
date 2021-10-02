@@ -21,7 +21,6 @@
         android:layout_height="31dp"
         android:layout_marginBottom="32dp"
         android:text="You have x ToDos In ToDay"
-
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,5 +36,6 @@
         android:text="Add ToDo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

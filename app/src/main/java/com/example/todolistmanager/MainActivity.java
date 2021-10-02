@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         toDos = new ArrayList<>();
         toDos = dbHandler.getAllToDos();
 
+
+        ToDoAdapter adapter = new ToDoAdapter(context,R.layout.single_todo,toDos);
+        listView.setAdapter(adapter);
+
+
         //get todo counts from the table
         int countTodo = dbHandler.countToDo();
         count.setText("You have "+countTodo+" todos");
